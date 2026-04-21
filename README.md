@@ -153,8 +153,31 @@ kubectl get svc db-service   # Confirm ClusterIP and port 5432
 
 ```bash
 kubectl exec -it deploy/postgres -- psql -U postgres -d appdb -c "\dt"
-# If you see the "items" table, the init script ran successfully
 ```
+
+> If you see the "items" table, the init script ran successfully
+
+### 2.4 Connect with VS Code SQLTools (optional)
+
+* Install the **SQLTools** extension and **SQLTools PostgreSQL/Cockroach Driver** in VS Code
+* Port-forward the database to your local machine:
+
+```bash
+  kubectl port-forward svc/db-service 5432:5432 &
+```
+
+* In VS Code, open **SQLTools → Add New Connection** and fill in:
+
+| Field | Value |
+| ----- | ----- |
+| Connection name | `appdb` |
+| Server / Host | `localhost` |
+| Port | `5432` |
+| Database | `appdb` |
+| Username | `postgres` |
+| Password | `postgres` |
+
+* Click **Test Connection** → **Save Connection** → run queries directly from the editor
 
 ---
 
