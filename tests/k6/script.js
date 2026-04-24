@@ -27,7 +27,7 @@ export const options = {
 // Default function (executed by each VU on each iteration)
 // ---------------------------------------------------------------------------
 export default function () {
-  const BASE_URL = __ENV.BASE_URL || "http://localhost:30080";
+  const BASE_URL = __ENV.BASE_URL || "http://localhost:8080";
 
   // --- Test 1: Welcome endpoint ---
   const welcome = http.get(`${BASE_URL}/`);

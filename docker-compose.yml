@@ -1,4 +1,10 @@
 services:
+  node-exporter:
+    image: prom/node-exporter:latest
+    ports:
+      - "9100:9100"
+    networks:
+      - default
   # ----- PostgreSQL -----------------------------------------
   db:
     image: postgres:16-alpine
@@ -61,6 +67,8 @@ services:
       - ./docker/grafana/datasources.yaml:/etc/grafana/provisioning/datasources/datasources.yaml:ro
       - ./docker/grafana/dashboards.yaml:/etc/grafana/provisioning/dashboards/dashboards.yaml:ro
       - ./docker/grafana/go-api-metrics.json:/var/lib/grafana/dashboards/go-api-metrics.json:ro
+      - ./docker/grafana/exporter-metrics.json:/var/lib/grafana/dashboards/exporter-metrics.json:ro
+      - ./docker/grafana/node-exporter-full.json:/var/lib/grafana/dashboards/node-exporter-full.json:ro
     depends_on:
       - prometheus
 
